@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="TcpUdpTool.View.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TcpUdpTool.View"
+             xmlns:viewmodel="clr-namespace:TcpUdpTool.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="General" 
+                  Grid.ColumnSpan="3"
+                  Grid.Row="0"
+                  Padding="5">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                              
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       Content="Encoding:" />
+
+                <ComboBox Grid.Column="1"
+                          Grid.Row="0"
+                          Height="21"
+                          Width="200"
+                          VerticalContentAlignment="Center"
+                          ItemsSource="{Binding Encodings}"
+                          SelectedItem="{Binding SelectedEncoding}"/>
+
+                <Label Grid.Column="0"
+                       Grid.Row="1"
+                       Content="IPv6 Support:" />
+
+                <StackPanel Grid.Column="1"
+                            Grid.Row="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="0 2 0 0">
+
+                    <RadioButton Content="Enable" 
+                                 IsChecked="{Binding IPv6SupportEnabled, Mode=TwoWay}"/>
+                    <RadioButton Content="Disable"
+                                 Margin="10 0 0 0"
+                                 IsChecked="{Binding IPv6SupportDisabled, Mode=OneWay}"/>
+
+                </StackPanel>
+                              
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="History"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  Margin="0 10 0 0"
+                  Padding="5">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       Content="Show:" />
+
+                <StackPanel Grid.Column="1"
+                            Grid.Row="0"
+                            Orientation="Horizontal">
+                    <TextBox 
+                         Width="40"
+                         Height="20"
+                         VerticalContentAlignment="Center"
+                         HorizontalAlignment="Left"
+                         Validation.ErrorTemplate="{x:Null}"
+                         Text="{Binding HistoryEntries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Label Content="entries" />
+                </StackPanel>
+                       
+                <Label Grid.Column="0"
+                       Grid.Row="1"
+                       Content="Scroll to End:" />
+
+                <StackPanel Grid.Column="1"
+                            Grid.Row="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="0 2 0 0">
+
+                    <RadioButton Content="Yes" 
+                                 IsChecked="{Binding ScrollToEndEnabled, Mode=TwoWay}"/>
+                    <RadioButton Content="No"
+                                 Margin="10 0 0 0"
+                                 IsChecked="{Binding ScrollToEndDisabled, Mode=OneWay}"/>
+                </StackPanel>
+
+                <Label Grid.Column="0"
+                       Grid.Row="2"
+                       Content="Info:"
+                       Margin="0"/>
+
+                <StackPanel Grid.Column="1"
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Orientation="Vertical"
+                            VerticalAlignment="Center"
+                            Margin="0 6 0 0">
+
+                    <CheckBox Content="Timestamp"
+                              VerticalContentAlignment="Center"
+                              IsChecked="{Binding HistoryInfoTimestamp}" />
+
+                    <CheckBox Content="IP Address"
+                              VerticalContentAlignment="Center"
+                              Margin="0 4 0 0"
+                              IsChecked="{Binding HistoryInfoIpAddress}" />
+
+                </StackPanel>
+
+            </Grid>
+        </GroupBox>
+        
+    </Grid>
+       
+</UserControl>

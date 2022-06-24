@@ -1,0 +1,31 @@
+std::string asterix::sys::types::asx_basic_point_util::to_str() noexcept
+{
+	return std::string();
+}
+
+template<typename T> std::string asterix::sys::types::asx_point2<T>::to_str() noexcept
+{
+	return "PPPP";
+}
+template<typename T>
+T asterix::sys::types::asx_point2<T>::operator[](const signed  index) noexcept
+{
+		switch(index)
+		{
+			case 0:
+			{
+				return _x;
+				break;
+			}
+			case 1:
+			{
+				return _y;
+				break;
+			}
+			default:
+			{
+				return NULL;
+				break;
+			}
+		}
+}
